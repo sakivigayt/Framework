@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CoreFramework
+Bundle-SymbolicName: CoreFramework
+Bundle-Version: 1.0.0.qualifier
+Export-Package: 
+ com.constants,
+ com.custom.annotations,
+ com.drivers,
+ com.elements,
+ com.exception,
+ com.framework.setup,
+ com.log,
+ com.reporting,
+ com.utils
+Require-Bundle: org.aspectj.runtime
+Import-Package: com.log

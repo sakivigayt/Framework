@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="3" guice-stage="DEVELOPMENT" name="Failed suite [SuiteTest]" parallel="tests">
+  <parameter name="browser" value="firefox"/>
+  <listeners>
+    <listener class-name="com.reporting.ReportingListener"/>
+  </listeners>
+  <test name="SmokeTest1">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="com.mfs.tests.SmokeTests"/>
+    </classes>
+  </test> <!-- SmokeTest1 -->
+  <test name="SmokeTest2">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="com.mfs.tests.SmokeTests"/>
+    </classes>
+  </test> <!-- SmokeTest2 -->
+  <test name="SmokeTest1(failed)" parallel="tests">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="com.mfs.tests.SmokeTests">
+        <methods>
+          <include name="tearDown"/>
+          <include name="tearDown"/>
+          <include name="individualInvestorNonUSTest"/>
+          <include name="setup"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.mfs.tests.SmokeTests -->
+    </classes>
+  </test> <!-- SmokeTest1(failed) -->
+  <test name="SmokeTest2(failed)" parallel="tests">
+    <parameter name="browser" value="firefox"/>
+    <classes>
+      <class name="com.mfs.tests.SmokeTests">
+        <methods>
+          <include name="tearDown"/>
+          <include name="tearDown"/>
+          <include name="individualInvestorNonUSTest"/>
+          <include name="setup"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.mfs.tests.SmokeTests -->
+    </classes>
+  </test> <!-- SmokeTest2(failed) -->
+</suite> <!-- Failed suite [SuiteTest] -->
