@@ -1,7 +1,5 @@
 package com.drivers;
 
-import io.appium.java_client.AppiumDriver;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -14,8 +12,6 @@ public class DriverClass {
 	 * The WebDriver driver;
 	 */
 	private WebDriver driver;
-	
-	private AppiumDriver appiumDriver;
 
 	/**
 	 * The DriverType selectedDriverType
@@ -36,8 +32,6 @@ public class DriverClass {
 	 * The default driver type that needs to be initialized
 	 */
 	private final DriverType defaultDriverType = DriverType.FIREFOX;
-	
-	private final DriverType defaultAppiumDriverType=DriverType.APPIUM;
 
 	/**
 	 * Variable which stores the OS value.
@@ -97,15 +91,6 @@ public class DriverClass {
 		return driver;
 	}
 
-	public AppiumDriver getAppiumDriver() {
-		if(appiumDriver==null) {
-			selectedDriverType = getAppiumDriverType();
-			DesiredCapabilities desiredCapabilities = selectedDriverType.getDesiredCapabilities(config);
-			instantiateAppiumDriver(desiredCapabilities);
-			logger.info("Appium Driver instantiated");			
-		}
-		return appiumDriver;
-	}
 	public void closeDriver() {
 		if (!(driver == null)) {
 			driver.quit();
@@ -149,21 +134,6 @@ public class DriverClass {
 		return driverType;
 	}
 	
-	public DriverType getAppiumDriverType() {
-		DriverType driverType = defaultAppiumDriverType;
-		
-		try {
-			driverType = DriverType.valueOf("APPIUM");
-		}catch (IllegalArgumentException ignored) {
-			System.err.println("Unknown driver specified, defaulting to '"
-					+ driverType + "'...");
-		} catch (NullPointerException ignored) {
-			System.err.println("No driver specified, defaulting to '"
-					+ driverType + "'...");
-		}
-		return driverType;
-		
-	}
 
 	/**
 	 * Method to instantiate Webdriver and getting driver object based on the
@@ -176,7 +146,5 @@ public class DriverClass {
 		driver = selectedDriverType.getDriverObject(desiredCapabilities);
 	}
 
-	private void instantiateAppiumDriver(DesiredCapabilities desiredCapabilities) {
-		appiumDriver = selectedDriverType.getAppiumDriverObject(desiredCapabilities);
-	}
+	
 }

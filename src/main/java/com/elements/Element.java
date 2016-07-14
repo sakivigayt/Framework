@@ -1,5 +1,7 @@
 package com.elements;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,6 +31,8 @@ public class Element {
 	 * The WebElement element
 	 */
 	protected WebElement element = null;
+	
+	protected List<WebElement> listOfElements = null;
 
 	/**
 	 * The String locator
@@ -66,7 +70,7 @@ public class Element {
 		this.locator = locator;
 		this.by = getLocatorBy(locator, locatorType);
 	}
-
+	
 	/**
 	 * Method for fetching the locator based on locatorType
 	 * 
@@ -122,6 +126,11 @@ public class Element {
 
 	}
 
+	public List<WebElement> getElements() {
+		
+		return listOfElements = driver.findElements(by);
+		
+	}
 	/**
 	 * clicks on the intended element.
 	 */

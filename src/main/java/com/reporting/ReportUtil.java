@@ -140,25 +140,28 @@ public class ReportUtil {
 		if (flag) {
 			logPass("Assertion Passes");
 		} else {
-			logFail("Assertion Fails, expected True but was false");
+			//logFail("Assertion Fails, expected True but was false");
+			Assert.assertTrue(flag);
 		}
 	}
 
 	public static void assertFalse(boolean flag) {
 
 		if (flag) {
-			logFail("Assertion Fails");
+			//logFail("Assertion Fails");
+			Assert.assertFalse(flag);
 		} else {
 			logPass("Assertion Passes");
 		}
 	}
 
-	public static void assertTrue(boolean flag, String details) {
 
+	public static void assertTrue(boolean flag, String details) {
 		if (flag) {
 			logPass(details);
 		} else {
-			logFail(details);
+			//logFail(details);
+			Assert.assertTrue(flag, details);
 		}
 	}
 

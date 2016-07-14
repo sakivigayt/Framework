@@ -1,12 +1,10 @@
 package com.drivers;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -59,12 +57,6 @@ public enum DriverType implements IDriverSetup {
 			return capabilities;
 		}
 
-		@Override
-		public AppiumDriver getAppiumDriverObject(DesiredCapabilities dc) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
 	},
 	CHROME {
 
@@ -107,11 +99,6 @@ public enum DriverType implements IDriverSetup {
 			return capabilities;
 		}
 
-		@Override
-		public AppiumDriver getAppiumDriverObject(DesiredCapabilities dc) {
-			// TODO Auto-generated method stub
-			return null;
-		}
 	},
 
 	IE {
@@ -155,19 +142,22 @@ public enum DriverType implements IDriverSetup {
 			return capabilities;
 		}
 
-		@Override
-		public AppiumDriver getAppiumDriverObject(DesiredCapabilities dc) {
-			// TODO Auto-generated method stub
-			return null;
-		}
 	},
 	
-	APPIUM {
+	ANDROID {
 
 		@Override
 		public WebDriver getDriverObject(DesiredCapabilities dc) {
-			// TODO Auto-generated method stub
-			return null;
+			WebDriver driver = null;
+			
+			try {
+				driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),
+						dc);
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return driver;
 		}
 		
 
@@ -175,8 +165,8 @@ public enum DriverType implements IDriverSetup {
 		public DesiredCapabilities getDesiredCapabilities(DriverConfig config) {
 			PropReader pr = new PropReader("MobileDevice.properties");
 			
-			/*File appDir = new File(pr.getValue("appdir"));
-			File app = new File(appDir, pr.getValue("app"));*/
+			File appDir = new File(pr.getValue("appdir"));
+			File app = new File(appDir, pr.getValue("app"));
 			
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			capabilities.setCapability("BROWSER_NAME", pr.getValue("browsername"));
@@ -184,26 +174,12 @@ public enum DriverType implements IDriverSetup {
 			capabilities.setCapability("deviceName", pr.getValue("devicename"));
 			capabilities.setCapability("platformName", pr.getValue("platformname"));
 
-			/*capabilities.setCapability("app", app.getAbsolutePath());*/
+			capabilities.setCapability("app", app.getAbsolutePath());
 			
-			capabilities.setCapability("appPackage", "com.android.calculator2");
-			capabilities.setCapability("appActivity","com.android.calculator2.Calculator");
+			/*capabilities.setCapability("appPackage", "com.android.calculator2");
+			capabilities.setCapability("appActivity","com.android.calculator2.Calculator");*/
 
 			return capabilities;
-		}
-
-		@Override
-		public AppiumDriver getAppiumDriverObject(DesiredCapabilities dc) {
-			AppiumDriver appiumDriver = null;
-			try {
-				appiumDriver =  new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),
-						dc);
-				appiumDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return appiumDriver;
 		}
 		
 	},

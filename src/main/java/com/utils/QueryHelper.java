@@ -77,7 +77,7 @@ public class QueryHelper {
 		return data;
 	}
 
-	/*public static Collection<User> getObject(String query) {		
+/*	public static Collection<User> getObject(String query) {		
 		DataSource datasource;
 		Collection<User> testData = null;
 		try {
