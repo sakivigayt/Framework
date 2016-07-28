@@ -2,16 +2,11 @@ package com.utils;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
-
 
 import com.exception.ValidationException;
 import com.log.LoggerFactory;
@@ -77,7 +72,7 @@ public class QueryHelper {
 		return data;
 	}
 
-	/*public static Collection<User> getObject(String query) {		
+/*	public static Collection<User> getObject(String query) {		
 		DataSource datasource;
 		Collection<User> testData = null;
 		try {

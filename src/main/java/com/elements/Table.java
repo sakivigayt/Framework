@@ -63,7 +63,6 @@ public class Table extends Element {
 			rows = element.findElements(By.tagName("tr"));
 		} catch (NotFoundException e) {
 		}
-
 	}
 
 	/**

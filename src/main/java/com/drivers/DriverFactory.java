@@ -1,7 +1,5 @@
 package com.drivers;
 
-import io.appium.java_client.AppiumDriver;
-
 import org.openqa.selenium.WebDriver;
 
 import com.log.LoggerFactory;
@@ -43,15 +41,5 @@ public class DriverFactory {
 	public static DriverConfig getConfig() {
 		return driverThread.get().getConfig();
 	}
-
-	public static synchronized AppiumDriver getAppiumDriver() {
-		return driverThread.get().getAppiumDriver();
-	}
-
-	public static synchronized void quitAppiumDriver() {
-		if (!((driverThread.get().getAppiumDriver()) == null)) {
-			driverThread.get().getAppiumDriver().quit();
-		}
-		driverThread.remove();
-	}
+	
 }

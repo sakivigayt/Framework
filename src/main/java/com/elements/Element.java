@@ -1,5 +1,11 @@
 package com.elements;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileDriver;
+import io.appium.java_client.TouchAction;
+
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,6 +35,8 @@ public class Element {
 	 * The WebElement element
 	 */
 	protected WebElement element = null;
+
+	protected List<WebElement> listOfElements = null;
 
 	/**
 	 * The String locator
@@ -119,6 +127,12 @@ public class Element {
 		return element = (new WebDriverWait(DriverFactory.getDriver(),
 				DriverFactory.getConfig().getExplicitWaitTimeout()))
 				.until(ExpectedConditions.visibilityOfElementLocated(by));
+
+	}
+
+	public List<WebElement> getElements() {
+
+		return listOfElements = driver.findElements(by);
 
 	}
 
@@ -251,4 +265,46 @@ public class Element {
 		Actions action = new Actions(driver);
 		action.moveToElement(getElement()).build().perform();
 	}
+
+	public void verticalScroll(String text) {
+		((AppiumDriver) driver).scrollTo(text);
+	}
+
+	public void horizontalScroll(int startx, int starty, int endx, int endy,
+			int duration) {
+		((AppiumDriver) driver).swipe(startx, starty, endx, endy, duration);
+
+	}
+
+	public void horizontalSwipe(int x, int y) {
+
+		TouchAction action = new TouchAction((MobileDriver) driver);
+		action.longPress(getElement()).moveTo(x, y).release().perform();
+
+	}
+
+	public void tap() {
+		TouchAction action = new TouchAction((MobileDriver) driver);
+		action.tap(getElement()).release().perform();
+	}
+
+	public void moveToMobileElement() {
+		TouchAction action = new TouchAction((MobileDriver) driver);
+		action.moveTo(getElement()).release().perform();
+	}
+
+	public void zoom() {
+		((AppiumDriver) driver).zoom(getElement());
+	}
+
+	public void pinch() {
+		((AppiumDriver) driver).pinch(getElement());
+	}
+
+	public void dragAndDropMobileElements(Element element) {
+		TouchAction action = new TouchAction((MobileDriver) driver);
+		action.longPress(getElement()).moveTo(element.getElement()).release()
+				.perform();
+	}
+
 }
