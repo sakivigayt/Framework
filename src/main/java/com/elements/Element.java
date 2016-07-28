@@ -3,7 +3,6 @@ package com.elements;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileDriver;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.TouchShortcuts;
 
 import java.util.List;
 
@@ -307,4 +306,5 @@ public class Element {
 		action.longPress(getElement()).moveTo(element.getElement()).release()
 				.perform();
 	}
+
 }

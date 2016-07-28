@@ -34,17 +34,6 @@ public class DriverClass {
 	private final DriverType defaultDriverType = DriverType.FIREFOX;
 
 	/**
-	 * Variable which stores the OS value.
-	 */
-	private final String operatingSystem = System.getProperty("os.name")
-			.toUpperCase();
-
-	/**
-	 * Variable which stores the system arch.
-	 */
-	private final String systemArchitecture = System.getProperty("os.arch");
-
-	/**
 	 * The Logger logger
 	 */
 	private final static MyLogger logger = LoggerFactory

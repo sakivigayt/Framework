@@ -165,18 +165,19 @@ public enum DriverType implements IDriverSetup {
 		public DesiredCapabilities getDesiredCapabilities(DriverConfig config) {
 			PropReader pr = new PropReader("MobileDevice.properties");
 			
-			File appDir = new File(pr.getValue("appdir"));
-			File app = new File(appDir, pr.getValue("app"));
+			/*File appDir = new File(pr.getValue("appdir"));
+			File app = new File(appDir, pr.getValue("app"));*/
 			
 			DesiredCapabilities capabilities = new DesiredCapabilities();
 			capabilities.setCapability("BROWSER_NAME", pr.getValue("browsername"));
 			capabilities.setCapability("VERSION", pr.getValue("version"));
 			capabilities.setCapability("deviceName", pr.getValue("devicename"));
 			capabilities.setCapability("platformName", pr.getValue("platformname"));
-
-			capabilities.setCapability("app", app.getAbsolutePath());
+			capabilities.setCapability("browserName", "Chrome");
 			
-			/*capabilities.setCapability("appPackage", "com.android.calculator2");
+			//capabilities.setCapability("app", app.getAbsolutePath());
+			
+		/*	capabilities.setCapability("appPackage", "com.android.calculator2");
 			capabilities.setCapability("appActivity","com.android.calculator2.Calculator");*/
 
 			return capabilities;

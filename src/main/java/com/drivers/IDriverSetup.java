@@ -1,7 +1,5 @@
 package com.drivers;
 
-import io.appium.java_client.AppiumDriver;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 

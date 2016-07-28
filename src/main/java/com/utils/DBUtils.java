@@ -1,8 +1,5 @@
 package com.utils;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 
 
@@ -20,7 +17,7 @@ public class DBUtils {
 		return convertData(list);
 	}*/
 
-	private static Object[][] convertData(List<List<Object>> fileData) {
+	/*private static Object[][] convertData(List<List<Object>> fileData) {
 		Object[][] extractedData = null;
 		if (fileData != null && fileData.size() > 0) {
 			extractedData = new Object[fileData.size()][fileData.get(0).size()];
@@ -35,5 +32,5 @@ public class DBUtils {
 			}
 		}
 		return extractedData;
-	}
+	}*/
 }
