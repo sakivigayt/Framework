@@ -6,15 +6,18 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.exception.InitializationException;
+import com.utils.JsonReader;
 import com.utils.PropReader;
 
 /**
@@ -52,7 +55,7 @@ public enum DriverType implements IDriverSetup {
 		public DesiredCapabilities getDesiredCapabilities(DriverConfig config) {
 
 			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-			capabilities.setBrowserName("firefox");
+			capabilities.setBrowserName(JsonReader.setCapability("firefox", "browserName"));
 			System.out.println(config.getExplicitWaitTimeout());
 			return capabilities;
 		}
@@ -139,6 +142,10 @@ public enum DriverType implements IDriverSetup {
 		public DesiredCapabilities getDesiredCapabilities(DriverConfig config) {
 			DesiredCapabilities capabilities = DesiredCapabilities
 					.internetExplorer();
+			capabilities.setPlatform(Platform.WINDOWS);
+			capabilities.setBrowserName(BrowserType.IE);
+			capabilities.setVersion(JsonReader.setCapability("ie", "browserVersion"));
+			
 			return capabilities;
 		}
 
