@@ -24,10 +24,11 @@ public class DriverFactory {
 	};
 
 	public static synchronized WebDriver getDriver() {
-		/*
-		 * if(driverThread.get().getDriver()==null){ initiateDriver("firefox");
-		 * }
-		 */
+
+		if (driverThread.get().getDriver() == null) {
+			initiateDriver("firefox");
+		}
+
 		return driverThread.get().getDriver();
 	}
 
@@ -41,5 +42,5 @@ public class DriverFactory {
 	public static DriverConfig getConfig() {
 		return driverThread.get().getConfig();
 	}
-	
+
 }

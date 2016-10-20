@@ -22,6 +22,7 @@ public class WebTest {
 	protected WebDriver driver;
 
 	protected Eyes eyes;
+	
 
 	@BeforeMethod
 	public void setup(ITestContext test) {
@@ -35,9 +36,7 @@ public class WebTest {
 
 	@AfterMethod
 	public void tearDown() {
-
 		DriverFactory.quitDriver();
-
 	}
 
 }

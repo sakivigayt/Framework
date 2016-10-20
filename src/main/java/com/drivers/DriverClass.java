@@ -76,6 +76,7 @@ public class DriverClass {
 					.getDesiredCapabilities(config);
 			instantiateWebDriver(desiredCapabilities);
 			logger.info("Driver instantiated");
+			driver.manage().window().maximize();
 		}
 		return driver;
 	}

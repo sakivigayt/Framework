@@ -92,39 +92,26 @@ public abstract class BasePage {
 		return screenShot;
 
 	}
-	
+
 	public void hideKeyboard() {
 		((AppiumDriver) driver).getKeyboard().sendKeys(Keys.ENTER);
-		
+
 	}
 
-	/*public void waitForAjax(int timeoutInSeconds) {
-		System.out
-				.println("Checking active ajax calls by calling jquery.active");
-		try {
-			if (driver instanceof JavascriptExecutor) {
-				JavascriptExecutor jsDriver = (JavascriptExecutor) driver;
-				for (int i = 0; i < timeoutInSeconds; i++) {
-					Object numberOfAjaxConnections = jsDriver
-							.executeScript("return jQuery.active");
-					// return should be a number
-					if (numberOfAjaxConnections instanceof Long) {
-						Long n = (Long) numberOfAjaxConnections;
-						System.out
-								.println("Number of active jquery ajax calls: "
-										+ n);
-						if (n.longValue() == 0L)
-							break;
-					}
-					Thread.sleep(1000);
-				}
-			} else {
-				System.out.println("Web driver: " + driver
-						+ " cannot execute javascript");
-			}
-		} catch (InterruptedException e) {
-			System.out.println(e);
-		}
-	}*/
+	/*
+	 * public void waitForAjax(int timeoutInSeconds) { System.out
+	 * .println("Checking active ajax calls by calling jquery.active"); try { if
+	 * (driver instanceof JavascriptExecutor) { JavascriptExecutor jsDriver =
+	 * (JavascriptExecutor) driver; for (int i = 0; i < timeoutInSeconds; i++) {
+	 * Object numberOfAjaxConnections = jsDriver
+	 * .executeScript("return jQuery.active"); // return should be a number if
+	 * (numberOfAjaxConnections instanceof Long) { Long n = (Long)
+	 * numberOfAjaxConnections; System.out
+	 * .println("Number of active jquery ajax calls: " + n); if (n.longValue()
+	 * == 0L) break; } Thread.sleep(1000); } } else {
+	 * System.out.println("Web driver: " + driver +
+	 * " cannot execute javascript"); } } catch (InterruptedException e) {
+	 * System.out.println(e); } }
+	 */
 
 }

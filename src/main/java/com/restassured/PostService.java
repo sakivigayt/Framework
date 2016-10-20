@@ -19,7 +19,6 @@ public class PostService {
 		try {
 			jsonBody = generateStringFromResource(requestFile);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Response response = given().contentType(contentType)
