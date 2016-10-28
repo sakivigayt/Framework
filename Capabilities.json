@@ -1,0 +1,20 @@
+{
+    "firefox":
+        {
+	 	 "platform": "WINDOWS",
+         "browserName": "firefox"       
+    }, 
+    
+    "chrome":
+        {
+	  "platform": "WINDOWS",
+       "browserName": "chrome"
+        },
+        
+      "ie":
+        {
+	      "platform": "WINDOWS",
+          "browserName": "internet explorer",
+          "browserVersion": "8"
+        }
+}

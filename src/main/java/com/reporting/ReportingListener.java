@@ -54,7 +54,7 @@ public class ReportingListener implements IResultListener {
 			logger.error(result.getMethod()
 					+ result.getThrowable().getMessage());
 			ReportUtil.logFail("Test Case Fails with following message:: "
-					+ result.getThrowable().getLocalizedMessage());
+					+ result.getThrowable().getMessage());
 			// Assert.assertTrue(false);
 		}
 		ReportTestManager.endTest();

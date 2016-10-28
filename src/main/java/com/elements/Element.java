@@ -123,7 +123,6 @@ public class Element {
 	 */
 	protected WebElement getElement() {
 		logger.info("Getting the object - >" + by.toString());
-
 		return element = (new WebDriverWait(DriverFactory.getDriver(),
 				DriverFactory.getConfig().getExplicitWaitTimeout()))
 				.until(ExpectedConditions.visibilityOfElementLocated(by));
@@ -266,6 +265,8 @@ public class Element {
 		action.moveToElement(getElement()).build().perform();
 	}
 
+	//Mobile
+	
 	public void verticalScroll(String text) {
 		((AppiumDriver) driver).scrollTo(text);
 	}

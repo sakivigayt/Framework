@@ -10,11 +10,5 @@
 			<class name="com.mfs.tests.SmokeTests" />
 		</classes>
 	</test>
-	<test name="SmokeTest2">
-		<parameter name="browser" value="firefox"></parameter>
-		<classes>
-			<class name="com.mfs.tests.SmokeTests" />
-		</classes>
-	</test>
 </suite> <!-- Suite -->
 

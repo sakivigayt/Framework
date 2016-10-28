@@ -182,7 +182,7 @@ public class ReportUtil {
 
 	private static void failure(String detail) {
 		try {
-			logger.info("Inside Failure");
+			logger.info("Inside Failure"+ detail);
 			ReportTestManager.getTest().log(
 					LogStatus.FAIL,
 					detail,
