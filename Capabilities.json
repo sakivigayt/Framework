@@ -2,22 +2,19 @@
     "firefox":
         {
 	 	 "platform": "WINDOWS",
-          "browserName": "firefox",
-         
+         "browserName": "firefox"       
     }, 
     
     "chrome":
         {
 	  "platform": "WINDOWS",
-          "browserName": "chrome",
-       
+       "browserName": "chrome"
         },
         
       "ie":
         {
 	      "platform": "WINDOWS",
           "browserName": "internet explorer",
-          "browserVersion": "8",
-       
+          "browserVersion": "8"
         }
 }
