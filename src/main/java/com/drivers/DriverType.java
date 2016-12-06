@@ -59,9 +59,9 @@ public enum DriverType implements IDriverSetup {
 		public DesiredCapabilities getDesiredCapabilities(DriverConfig config) {
 
 			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-			//String s = JsonReader.setCapability("firefox", "browserName");
-			//System.out.println(s);
-			//capabilities.setBrowserName();
+			String s = JsonReader.setCapability("firefox", "browserName");
+			System.out.println(s);
+			capabilities.setBrowserName(s);
 			System.out.println(config.getExplicitWaitTimeout());
 			return capabilities;
 		}
