@@ -14,7 +14,7 @@ import com.utils.TimestampUtils;
 
 public class ReportingListener implements IResultListener {
 
-	final static MyLogger logger = LoggerFactory.getLogger(ReportManager.class);
+	final static MyLogger logger = LoggerFactory.getLogger(ReportingListener.class);
 	public static String reportLocation = null;
 
 	/**
