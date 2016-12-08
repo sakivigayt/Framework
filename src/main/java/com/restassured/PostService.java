@@ -3,11 +3,14 @@ package com.restassured;
 import static com.jayway.restassured.RestAssured.given;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
+import com.log.LoggerFactory;
+import com.log.MyLogger;
 
 
 public class PostService {
 
 	private ResponseWrapper response = new ResponseWrapper();
+	private final static MyLogger logger = LoggerFactory.getLogger(PostService.class);
 
 	public ResponseWrapper post(RequestWrapper request) {
 
@@ -25,6 +28,9 @@ public class PostService {
 		} else {
 			response = given().cookies(request.getCookies()).contentType(ContentType.JSON).body(jsonBody).when().post(endPoint).thenReturn();
 		}
+
+		String responseAsString = response.body().asString();
+		logger.info("\n Printing Response as String for get request\n" + responseAsString);
 
 		this.response.setResponseCode(String.valueOf(response.getStatusCode()));
 		this.response.setResponseBody(response.getBody().asString());
