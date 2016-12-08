@@ -1,0 +1,12 @@
+{
+  "args": {},
+  "headers": {
+    "Accept": "*/*",
+    "Accept-Encoding": "gzip,deflate",
+    "Content-Type": "application/json; charset=ISO-8859-1",
+    "Host": "httpbin.org",
+    "User-Agent": "Apache-HttpClient/4.3.3 (java 1.5)"
+  },
+  "origin": "14.140.116.145",
+  "url": "https://httpbin.org/get"
+}

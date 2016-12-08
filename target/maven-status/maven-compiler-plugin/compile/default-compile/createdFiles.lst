@@ -1,1 +1,7 @@
+com\restassured\PostService.class
+com\restassured\Authentication.class
+com\utils\JsonReader.class
 com\elements\Element$1.class
+com\restassured\PutService.class
+com\restassured\GetService.class
+com\restassured\DeleteService.class
