@@ -1,12 +1,10 @@
 package com.restassured.stepdefs;
 
-import com.jayway.restassured.http.ContentType;
 import com.restassured.GetService;
 import com.restassured.RequestBuilder;
 import com.restassured.RequestWrapper;
 import com.restassured.ResponseWrapper;
 import com.restassured.lib.APIUtil;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -19,10 +17,6 @@ public class getAPI {
     private RequestBuilder requestBuilder = new RequestBuilder();
     private GetService getService = new GetService();
     private ResponseWrapper response;
-//    private String apiEndPoint;
-//    private ContentType contentType;
-//    private String expectedStatusCode;
-//    private String expectedAPIResponseJSON;
     private String apiExpectedContentType;
     private String testAPIName;
 

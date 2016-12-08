@@ -1,12 +1,8 @@
 
 package com.restassured.lib;
 
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Header;
-import com.jayway.restassured.response.Response;
 import com.restassured.ResponseWrapper;
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
@@ -22,7 +18,6 @@ import org.xmlunit.xpath.JAXPXPathEngine;
 import org.xmlunit.matchers.EvaluateXPathMatcher;
 
 import javax.xml.transform.Source;
-import java.util.Iterator;
 
 public class APIUtil {
 	
@@ -100,8 +95,7 @@ public class APIUtil {
 			expectedAPIResponseJSON = APIUtil.getAPIExpectedResponseJson(testAPIName);
 
 			//Test Specific JSON Value
-			String jsonTestKey = keyToCompare;
-			assertEquals(JSONUtil.getJsonKeyValue(expectedAPIResponseJSON, jsonTestKey), JSONUtil.getJsonKeyValue(response.getResponseBody(),jsonTestKey));
+			assertEquals(JSONUtil.getJsonKeyValue(expectedAPIResponseJSON, keyToCompare), JSONUtil.getJsonKeyValue(response.getResponseBody(),keyToCompare));
 
 		} else if (responseContentType.equals("XML")){
 
@@ -109,16 +103,15 @@ public class APIUtil {
 			expectedAPIResponseFileXML = expectedAPIResponseFilePath_XML + testAPIName + ".xml";
 
 			//Compare Individual Node values
-			String xmlNodeToBeCompared=keyToCompare;
 
 			//Get Expected value of this node from expected XML response file
 			Source sourceXML = Input.fromFile(expectedAPIResponseFileXML).build();
 			XPathEngine xpath = new JAXPXPathEngine();
-			Iterable<Node> allMatches = xpath.selectNodes(xmlNodeToBeCompared, sourceXML);
+			Iterable<Node> allMatches = xpath.selectNodes(keyToCompare, sourceXML);
 			assert allMatches.iterator().hasNext();
-			String nodeValue = xpath.evaluate(xmlNodeToBeCompared + "/text()", sourceXML);
+			String nodeValue = xpath.evaluate(keyToCompare + "/text()", sourceXML);
 
-			assertThat(response.getResponseBody(), EvaluateXPathMatcher.hasXPath(xmlNodeToBeCompared + "/text()", equalTo(nodeValue)));
+			assertThat(response.getResponseBody(), EvaluateXPathMatcher.hasXPath(keyToCompare + "/text()", equalTo(nodeValue)));
 		}
 
 		return true;
@@ -136,21 +129,6 @@ public class APIUtil {
 		return statusCode;
 	}
 
-	//Returns the StatusCode of the API's
-	public static int getAPIStatusCode(String sAPIURL){
-		Response webResponse = null;
-
-		try{
-		 webResponse= RestAssured.get(sAPIURL);
-		 return webResponse.getStatusCode();
-		}
-		catch (Exception e){
-			Log.info("Invalid URI: " + sAPIURL);
-			Assert.fail("Invalid URI: " + sAPIURL);
-			return 0;
-		}
-	}
-
 	//Reads expected status code of API from api.properties file
 	public static String getAPIExpectedContentType(String sAPIName){
 		String contentType;
@@ -161,21 +139,6 @@ public class APIUtil {
 
 		return contentType;
 	}
-
-	//Returns True if the API's status code is 200 or OK, else returns False
-	public static boolean isAPIOK(String sAPIURL){
-		try{
-			Response webResponse= RestAssured.get(sAPIURL);
-			if (webResponse.getStatusCode()==200) {return true;}
-			else {return false;}
-		}
-		catch (Exception e){
-			Log.info("Invalid URI: " + sAPIURL);
-			Assert.fail("Invalid URI: " + sAPIURL);
-			return false;			
-		}	
-	}
-
 
 	//Returns API's Endpoint from Properties file based on environment
 	public static String getAPIEndPoint(String sAPIName){

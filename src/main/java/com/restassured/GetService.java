@@ -24,9 +24,6 @@ public class GetService {
 			response = given().cookies(request.getCookies()).contentType(contentType).get(endPoint);
 		}
 
-		String responseAsString = response.body().asString();
-//		System.out.println("\n Printing Response as String for get request\n" + responseAsString);
-
 		this.response.setResponseCode(String.valueOf(response.getStatusCode()));
 		this.response.setResponseBody(response.getBody().asString());
 

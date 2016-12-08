@@ -26,9 +26,6 @@ public class PatchService {
             response = given().cookies(request.getCookies()).contentType(ContentType.JSON).body(jsonBody).when().patch(endPoint).thenReturn();
         }
 
-        String responseAsString = response.body().asString();
-        System.out.println("\n Printing Response as String for patch request \n" + responseAsString);
-
         this.response.setResponseCode(String.valueOf(response.getStatusCode()));
         this.response.setResponseBody(response.getBody().asString());
 

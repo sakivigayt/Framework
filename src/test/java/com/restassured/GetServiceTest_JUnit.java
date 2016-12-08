@@ -1,6 +1,5 @@
 package com.restassured;
 
-import com.jayway.restassured.http.ContentType;
 import com.restassured.lib.APIUtil;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;

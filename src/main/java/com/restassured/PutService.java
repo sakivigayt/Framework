@@ -26,9 +26,6 @@ public class PutService {
 			response = given().cookies(request.getCookies()).contentType(ContentType.JSON).body(jsonBody).when().put(endPoint).thenReturn();
 		}
 
-		String responseAsString = response.body().asString();
-		System.out.println("\n Printing Response as String for put request \n" + responseAsString);
-
 		this.response.setResponseCode(String.valueOf(response.getStatusCode()));
 		this.response.setResponseBody(response.getBody().asString());
 
