@@ -12,10 +12,10 @@ public class JsonReader {
 
 	@SuppressWarnings("unchecked")
 	public static String setCapability(String driverName, String capabilityName) {
-		final Map<String, Object> MAP = loadJsonToMap("Capabilities.json");
 
-		Map<String, String> BROWSER = (Map<String, String>) MAP.get(driverName);
-
+		final Map<String, Object> returnedMap = loadJsonToMap("E:\\SFramework\\sapientframework\\Capabilities.json");
+		Map<String, String> BROWSER = (Map<String, String>) returnedMap
+				.get(driverName);
 		String capability = BROWSER.get(capabilityName);
 		return capability;
 
@@ -33,7 +33,6 @@ public class JsonReader {
 		} catch (FileNotFoundException e) {
 
 		}
-
 		return map;
 	}
 
