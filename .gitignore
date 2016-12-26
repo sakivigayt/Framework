@@ -1,0 +1,5 @@
+.idea
+.classpat
+.project
+target/
+CoreFramework.iml

@@ -1,43 +1,41 @@
 package com.restassured;
 
 import static com.jayway.restassured.RestAssured.given;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import com.jayway.restassured.path.json.JsonPath;
+import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
+import com.log.LoggerFactory;
+import com.log.MyLogger;
+
 
 public class PostService {
 
-	public static String post(String contentType, String requestFile,
-			String uri, String jsonResponse) {
+	private ResponseWrapper response = new ResponseWrapper();
+	private final static MyLogger logger = LoggerFactory.getLogger(PostService.class);
 
-		String jsonBody = null;
-		String result = null;
-		try {
-			jsonBody = generateStringFromResource(requestFile);
-		} catch (IOException e) {
-			e.printStackTrace();
+	public ResponseWrapper post(RequestWrapper request) {
+
+		//Get Params
+		String result=null;
+		String endPoint = request.getEndPoint();
+		ContentType contentType = request.getContentType();
+		String jsonBody = request.getRequestBody();
+		String charset = ";charset="+request.getCharset();
+		Response response;
+
+		//fetch post response
+		if (request.getCookies() == null) {
+			response = given().contentType(contentType+charset).body(jsonBody).when().post(endPoint).thenReturn();
+		} else {
+			response = given().cookies(request.getCookies()).contentType(ContentType.JSON).body(jsonBody).when().post(endPoint).thenReturn();
 		}
-		Response response = given().contentType(contentType)
-				.body(jsonBody).when()
-				.post(uri);
 
 		String responseAsString = response.body().asString();
-		JsonPath jsonPath = new JsonPath(responseAsString);
+		logger.info("\n Printing Response as String for get request\n" + responseAsString);
 
-		result = jsonPath.getString(jsonResponse);
+		this.response.setResponseCode(String.valueOf(response.getStatusCode()));
+		this.response.setResponseBody(response.getBody().asString());
 
-		return result;
-
+		return this.response;
 	}
 
-	public static String generateStringFromResource(String path)
-			throws IOException {
-
-		return new String(Files.readAllBytes(Paths.get(path)));
-
-	}
 }

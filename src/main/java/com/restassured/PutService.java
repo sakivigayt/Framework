@@ -1,30 +1,41 @@
 package com.restassured;
 
 import static com.jayway.restassured.RestAssured.given;
+import com.jayway.restassured.http.ContentType;
+import com.jayway.restassured.response.Response;
+import com.log.LoggerFactory;
+import com.log.MyLogger;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class PutService {
 
-	public static void put(String contentType, String requestFileName,
-			String uri) {
+	private ResponseWrapper response = new ResponseWrapper();
+	private final static MyLogger logger = LoggerFactory.getLogger(PutService.class);
 
-		String jSonBody;
-		try {
-			jSonBody = generateStringFromResource(requestFileName);
-			given().contentType(contentType).body(jSonBody).when().put(uri)
-					.then().statusCode(204);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public ResponseWrapper put(RequestWrapper request) {
+
+		//Get Params
+		String result=null;
+		String endPoint = request.getEndPoint();
+		ContentType contentType = request.getContentType();
+		String jsonBody = request.getRequestBody();
+		String charset = ";charset="+request.getCharset();
+		Response response;
+
+		//fetch post response
+		if (request.getCookies() == null) {
+			response = given().contentType(contentType+charset).body(jsonBody).when().put(endPoint).thenReturn();
+		} else {
+			response = given().cookies(request.getCookies()).contentType(ContentType.JSON).body(jsonBody).when().put(endPoint).thenReturn();
 		}
 
+		String responseAsString = response.body().asString();
+		logger.info("\n Printing Response as String for get request\n" + responseAsString);
+
+		this.response.setResponseCode(String.valueOf(response.getStatusCode()));
+		this.response.setResponseBody(response.getBody().asString());
+
+		return this.response;
 	}
 
-	private static String generateStringFromResource(String path)
-			throws IOException {
-		return new String(Files.readAllBytes(Paths.get(path)));
-	}
 }
