@@ -7,17 +7,18 @@ import com.elements.Element;
 import com.elements.Element.LocatorType;
 import com.elements.Link;
 import com.elements.TextField;
+import com.framework.setup.BasePage;
 
 /**
  * Elements of the pages are listed here
  * @author cbhaka
  */
-public class MoneyControlPage  {
+public class MoneyControlPage extends BasePage {
 	
 	/**
 	 * The webdriver
 	 */
-	private WebDriver driver;
+	
 	
 	
 	/**
@@ -43,7 +44,7 @@ public class MoneyControlPage  {
 	/**
 	 * The loggedInName element
 	 */
-	private Link loggedInName = new Link("democucumber", LocatorType.LINK_TEXT);
+	private Link loggedInName = new Link("usr_nm", LocatorType.ID);
 	
 	/**
 	 * The companyName element
@@ -64,9 +65,7 @@ public class MoneyControlPage  {
 	 * Constructor will set the driver
 	 * @param driver 
 	 */
-	public MoneyControlPage(WebDriver driver) {
-		this.driver = driver;
-	}
+	
 	
 	/**
 	 * Login to the application
@@ -93,6 +92,7 @@ public class MoneyControlPage  {
 	 * @return the logged in name
 	 */
 	public boolean getLoggedInName() {
+		//loggedInName.getText();
 		return loggedInName.isDisplayed();
 	}
 	

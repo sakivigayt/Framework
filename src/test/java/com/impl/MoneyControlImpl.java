@@ -2,6 +2,7 @@ package com.impl;
 
 import org.testng.Assert;
 import com.drivers.DriverFactory;
+import com.reporting.ReportUtil;
 import com.ui.pages.MoneyControlPage;
 
 
@@ -14,7 +15,7 @@ public class MoneyControlImpl {
 	/**
 	 * Instance of MoneyControlPage
 	 */
-	MoneyControlPage moneyControlPage = new MoneyControlPage(DriverFactory.getDriver());
+	MoneyControlPage moneyControlPage = new MoneyControlPage();
 	
 	/**
 	 * Navigate to the application
@@ -37,7 +38,8 @@ public class MoneyControlImpl {
 	 * Assertion of successful login
 	 */
 	public void assertSuccessfullLogin() {
-		Assert.assertTrue(moneyControlPage.getLoggedInName());;
+		ReportUtil.assertTrue(moneyControlPage.getLoggedInName(), "Verifying That user is logged in");
+		//Assert.assertTrue(moneyControlPage.getLoggedInName());;
 		
 	}
 	
@@ -46,6 +48,7 @@ public class MoneyControlImpl {
 	 * @param name
 	 */
 	public void getQuote(String name) {
+		//moneyControlPage.getStockName();
 		moneyControlPage.enterCompanyName(name);
 	}
 	
@@ -55,7 +58,8 @@ public class MoneyControlImpl {
 	 */
 	public void assertStockName(String stockName) {
 		String name = moneyControlPage.getStockName();
-		Assert.assertEquals(name, stockName);
+		ReportUtil.assertTrue(name.equals(stockName), "Verifying the "+name+ " is visible");
+		//Assert.assertEquals(name, stockName);
 	}
 
 }
