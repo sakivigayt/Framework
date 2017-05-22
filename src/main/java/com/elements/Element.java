@@ -52,7 +52,7 @@ public class Element {
 	 * The enum LocatorType for different types of Locator.
 	 */
 	public static enum LocatorType {
-		ID, NAME, CLASS_NAME, LINK_TEXT, PARTIAL_LINK_TEXT, CSS_SELECTOR, TAG_NAME, XPATH,
+		ID, NAME, CLASS_NAME, LINK_TEXT, PARTIAL_LINK_TEXT, CSS_SELECTOR, TAG_NAME, XPATH
 	}
 
 	/**
