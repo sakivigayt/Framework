@@ -9,9 +9,13 @@ public class TimestampUtils {
 	 * @param args
 	 */
 	public static String getTimeStamp() {
-		String fileName = new SimpleDateFormat("yy-MMM-dd hhmmss")
+		String fileName = new SimpleDateFormat("dd-MMM-yy HHmmss")
 				.format(new Date());
 		return fileName;
 	}
+	
+
+	
+	
 
 }

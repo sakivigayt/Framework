@@ -13,7 +13,7 @@ public class JsonReader {
 	@SuppressWarnings("unchecked")
 	public static String setCapability(String driverName, String capabilityName) {
 
-		final Map<String, Object> returnedMap = loadJsonToMap("E:\\SFramework\\sapientframework\\Capabilities.json");
+		final Map<String, Object> returnedMap = loadJsonToMap(System.getProperty("user.dir")+"\\Capabilities.json");
 		Map<String, String> BROWSER = (Map<String, String>) returnedMap
 				.get(driverName);
 		String capability = BROWSER.get(capabilityName);

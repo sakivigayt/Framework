@@ -3,16 +3,18 @@ package com.reporting;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
+import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.internal.IResultListener;
 
+import com.drivers.DriverConfig;
 import com.drivers.DriverFactory;
 import com.log.LoggerFactory;
 import com.log.MyLogger;
 import com.relevantcodes.extentreports.LogStatus;
 import com.utils.TimestampUtils;
 
-public class ReportingListener implements IResultListener {
+public class ReportingListener implements IResultListener , ITestListener {
 
 	final static MyLogger logger = LoggerFactory.getLogger(ReportingListener.class);
 	public static String reportLocation = null;
@@ -86,14 +88,21 @@ public class ReportingListener implements IResultListener {
 	 * This method is called on start of test start
 	 */
 	public void onStart(ITestContext context) {
-		String ReporterName;
+		try {
+						
+			
+			String ReporterName;
 
-		reportLocation = System.getProperty("user.dir") + "\\Reports\\"
-				+ TimestampUtils.getTimeStamp() + "\\";
-		ReporterName = context.getCurrentXmlTest().getName() + ".html";
-		System.out.println(reportLocation + ReporterName);
+			reportLocation = System.getProperty("user.dir") + "\\Reports\\"
+					+ TimestampUtils.getTimeStamp() + "\\";
+			ReporterName = context.getCurrentXmlTest().getName() + ".html";
+			System.out.println(reportLocation + ReporterName);
 
-		ReportManager.getReporter(reportLocation + ReporterName);
+			ReportManager.getReporter(reportLocation + ReporterName);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
