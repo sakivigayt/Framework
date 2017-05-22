@@ -4,10 +4,10 @@
 	<listeners>
 		<listener class-name="com.reporting.ReportingListener"></listener>
 	</listeners>
-	<test name="SmokeTest1">
+	<test name="SapientDemo">
 		<parameter name="browser" value="firefox"></parameter>
 		<classes>
-			<class name="com.mfs.tests.SmokeTests" />
+			<class name="com.tests.MoneyControlTest" />
 		</classes>
 	</test>
 </suite> <!-- Suite -->
