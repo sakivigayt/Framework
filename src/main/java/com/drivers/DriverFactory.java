@@ -12,11 +12,11 @@ public class DriverFactory {
 	private final static MyLogger logger = LoggerFactory
 			.getLogger(DriverFactory.class);
 
-	public static void initiateDriver(final String browser) {
-
+	public static void initiateDriver() {
+	
 		if (driverThread.get() == null) {
 			logger.info("Initializing Driver");
-			driverThread.set(new DriverClass(browser.toUpperCase()));
+			driverThread.set(new DriverClass());
 		} else {
 			driverThread.set(driverThread.get());
 		}
@@ -26,7 +26,7 @@ public class DriverFactory {
 	public static synchronized WebDriver getDriver() {
 
 		if (driverThread.get().getDriver() == null) {
-			initiateDriver("firefox");
+			initiateDriver();
 		}
 
 		return driverThread.get().getDriver();
@@ -41,6 +41,10 @@ public class DriverFactory {
 
 	public static DriverConfig getConfig() {
 		return driverThread.get().getConfig();
+	}
+	
+	public static void setDriverConfig(DriverConfig config){
+		driverThread.get().setConfig(config);
 	}
 
 }

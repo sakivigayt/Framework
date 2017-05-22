@@ -3,6 +3,7 @@ package com.drivers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import com.exception.InitializationException;
 import com.log.LoggerFactory;
 import com.log.MyLogger;
 
@@ -26,7 +27,7 @@ public class DriverClass {
 	/**
 	 * Instance of DriverConfig.
 	 */
-	private DriverConfig config = new DriverConfig();
+	private DriverConfig config ;
 
 	/**
 	 * The default driver type that needs to be initialized
@@ -81,11 +82,11 @@ public class DriverClass {
 		return driver;
 	}
 
-	public void closeDriver() {
+/*	public void closeDriver() {
 		if (!(driver == null)) {
 			driver.quit();
 		}
-	}
+	}*/
 
 	/**
 	 * Method to quite the driver.
@@ -104,6 +105,9 @@ public class DriverClass {
 		return config;
 	}
 
+	public void setConfig(DriverConfig config) {
+		this.config=config;
+	}
 	/**
 	 * Method to fetch driverType based on the browser name
 	 * 
@@ -111,12 +115,13 @@ public class DriverClass {
 	 */
 	private DriverType getDriverType() {
 		DriverType driverType = defaultDriverType;
-		
+		String browserName=config.getBrowserName().toUpperCase();
 		try {
 			driverType = DriverType.valueOf(browserName);
 		} catch (IllegalArgumentException ignored) {
 			System.err.println("Unknown driver specified, defaulting to '"
 					+ driverType + "'...");
+			throw new InitializationException("Check The browser name specified");
 		} catch (NullPointerException ignored) {
 			System.err.println("No driver specified, defaulting to '"
 					+ driverType + "'...");

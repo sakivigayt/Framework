@@ -60,9 +60,9 @@ public enum DriverType implements IDriverSetup {
 
 			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
 			String s = JsonReader.setCapability("firefox", "browserName");
-			System.out.println(s);
+			//System.out.println(s);
 			capabilities.setBrowserName(s);
-			System.out.println(config.getExplicitWaitTimeout());
+			//System.out.println(config.getExplicitWaitTimeout());
 			return capabilities;
 		}
 
@@ -104,7 +104,7 @@ public enum DriverType implements IDriverSetup {
 
 		public DesiredCapabilities getDesiredCapabilities(DriverConfig config) {
 			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-			System.out.println(config.getExplicitWaitTimeout());
+			//System.out.println(config.getExplicitWaitTimeout());
 			return capabilities;
 		}
 
