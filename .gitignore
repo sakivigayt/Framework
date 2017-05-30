@@ -1,5 +1,9 @@
 .idea
 .classpat
 .project
+*.class
+*.log
+test-output/
+Reports/
 target/
 CoreFramework.iml

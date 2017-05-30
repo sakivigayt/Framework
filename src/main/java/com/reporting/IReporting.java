@@ -11,4 +11,6 @@ public interface IReporting {
 	public void verify(boolean condition,String detail);
 
 	public void assertTrue(boolean condition,String detail);
+	
+
 }

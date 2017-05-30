@@ -5,44 +5,16 @@
   <listeners>
     <listener class-name="com.reporting.ReportingListener"/>
   </listeners>
-  <test name="SmokeTest1">
+  <test name="SapientDemo(failed)" parallel="tests">
     <parameter name="browser" value="firefox"/>
     <classes>
-      <class name="com.mfs.tests.SmokeTests"/>
-    </classes>
-  </test> <!-- SmokeTest1 -->
-  <test name="SmokeTest2">
-    <parameter name="browser" value="firefox"/>
-    <classes>
-      <class name="com.mfs.tests.SmokeTests"/>
-    </classes>
-  </test> <!-- SmokeTest2 -->
-  <test name="SmokeTest1(failed)" parallel="tests">
-    <parameter name="browser" value="firefox"/>
-    <classes>
-      <class name="com.mfs.tests.SmokeTests">
+      <class name="com.tests.MoneyControlTest">
         <methods>
           <include name="tearDown"/>
-          <include name="tearDown"/>
-          <include name="individualInvestorNonUSTest"/>
-          <include name="setup"/>
+          <include name="searchQuoteFailed"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- com.mfs.tests.SmokeTests -->
+      </class> <!-- com.tests.MoneyControlTest -->
     </classes>
-  </test> <!-- SmokeTest1(failed) -->
-  <test name="SmokeTest2(failed)" parallel="tests">
-    <parameter name="browser" value="firefox"/>
-    <classes>
-      <class name="com.mfs.tests.SmokeTests">
-        <methods>
-          <include name="tearDown"/>
-          <include name="tearDown"/>
-          <include name="individualInvestorNonUSTest"/>
-          <include name="setup"/>
-          <include name="setup"/>
-        </methods>
-      </class> <!-- com.mfs.tests.SmokeTests -->
-    </classes>
-  </test> <!-- SmokeTest2(failed) -->
+  </test> <!-- SapientDemo(failed) -->
 </suite> <!-- Failed suite [SuiteTest] -->
